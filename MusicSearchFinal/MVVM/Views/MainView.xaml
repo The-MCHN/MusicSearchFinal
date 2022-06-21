@@ -1,0 +1,354 @@
+﻿<UserControl x:Class="MusicSearchFinal.MVVM.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:MusicSearchFinal.MVVM.Views" xmlns:vm="clr-namespace:MusicSearchFinal.MVVM.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <!--<UserControl.Resources>
+        <vm:MainViewModel x:Key="listVM"/>
+    </UserControl.Resources>-->
+
+    <Grid >
+        
+        <TabControl>
+            <TabItem x:Name="lista" Header="Lista">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="13*"/>
+
+                        <ColumnDefinition Width="12*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Dodaj zespoł" Grid.Row="3" Grid.Column="0" Margin="0 5 10 0"
+                            Command="{Binding NavigateToAddBandView}"/>
+                    <Button Content="Wróć" Grid.Row="3" Grid.Column="1" Margin="8 5 0 0"
+                            Command="{Binding NavigateToLoginView}"/>
+                    <ListView x:Name="Zespoły" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                              Margin="0 0 10 0"
+                              SelectedItem="{Binding CurrentBand}" 
+                              ItemsSource="{Binding Bands}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding LoadMembers}"/>
+                                <i:InvokeCommandAction Command="{Binding LoadAlbums}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+
+
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="150" x:Name="kolumna_Nazwisko">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" FontSize="14"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Nazwa" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna_Nazwisko}" >
+                                             <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDown">
+                                                    <i:InvokeCommandAction Command="{Binding LoadAllBands}"/>
+                                                </i:EventTrigger>
+                                              </i:Interaction.Triggers>
+                                            </TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Country}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Kraj"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Genre}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Gatunek"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Concerts}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Czy koncertuje?"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <!-- LISTA CZŁONKÓW -->
+                    <ListView x:Name="telefony" Grid.Column="1" Grid.Row="0" 
+                              Margin="8 0 0 0"
+                              SelectedItem="{Binding CurrentMember}" 
+                              ItemsSource="{Binding Members}"
+                              >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding LoadBands}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="200" x:Name="kolumna1" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding IDMember}" FontSize="14"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="ID" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna1}" >
+                                             <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDown">
+                                                    <i:InvokeCommandAction Command="{Binding LoadAllMembers}"/>
+                                                </i:EventTrigger>
+                                              </i:Interaction.Triggers>
+                                            </TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Imię"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Surname}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Nazwisko"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Instrument}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Instrument"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <!-- LISTA ALBUMÓW -->
+                    <ListView x:Name="Albumy" Grid.Column="1" Grid.Row="1"
+                              Margin="8 10 0 0"
+                              SelectedItem="{Binding CurrentAlbum}" 
+                              ItemsSource="{Binding Albums}"
+                              >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding LoadAlbums}"/>
+
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="200" x:Name="kolumna2" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ID}" FontSize="14"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="ID" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna2}" >
+                                             <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDown">
+                                                    <i:InvokeCommandAction Command="{Binding LoadAllAlbums}"/>
+                                                </i:EventTrigger>
+                                              </i:Interaction.Triggers>
+                                            </TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Nazwa"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn >
+                                        <GridViewColumn.CellTemplate >
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding YearOfOrigin}"  HorizontalAlignment="Stretch"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Rok wydania"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <!-- LISTA Piosenki -->
+                    <ListView x:Name="Piosenki" Grid.Column="1" Grid.Row="2"
+                              Margin="8 10 0 0"
+                              SelectedItem="{Binding CurrentSong}" 
+                              ItemsSource="{Binding Songs}"
+                              >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding LoadAlbumSongs}"/>
+
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="200" x:Name="kolumna3" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding IDSong}" FontSize="14"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="ID" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna3}" >
+                                             <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseDown">
+                                                    <i:InvokeCommandAction Command="{Binding LoadAllSongs}"/>
+                                                </i:EventTrigger>
+                                              </i:Interaction.Triggers>
+                                            </TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding SongName}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Tytuł"></TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+
+            </TabItem>
+
+            <!--<TabItem x:Name="dodajZespol" Header="Dodaj zespół">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="5">
+                        <TextBlock Text="Nazwa:"/>
+                        <TextBox x:Name="nazwa"  Text="{Binding TabDodajOsobyVM.Imie}"/>
+
+                        <TextBlock Text="Kraj:"/>
+                        <TextBox x:Name="kraj" Text="{Binding TabDodajOsobyVM.Nazwisko}"/>
+
+                        <TextBlock Text="Gatunek:"/>
+                        <TextBox x:Name="gatunek" Text="{Binding TabDodajOsobyVM.Miasto}"/>
+
+                        <TextBlock Text="Czy koncertuje?"/>
+                        <TextBox x:Name="koncertuje" Text="{Binding TabDodajOsobyVM.Miasto}"/>
+
+                        <TextBlock />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="button_Dodaj" Grid.Column="0" Content="Dodaj osobę do bazy"
+                                    Margin="5"
+                                    Command="{Binding TabDodajOsobyVM.Dodaj}"
+                                    IsEnabled="{Binding TabDodajOsobyVM.DodawanieDostepne, Mode=OneWay}"
+                             />
+                            <Button x:Name="button_Edytuj" Grid.Column="1" Content="Edytuj" 
+                                    Margin="5"
+                                    Command="{Binding TabDodajOsobyVM.Edytuj}"
+                                    IsEnabled="{Binding TabDodajOsobyVM.EdycjaDostepna, Mode=OneWay}"
+                             />
+                        </Grid>
+                    </StackPanel>
+                    --><!-- LISTA OSOB  --><!--
+                    <DataGrid 
+                        x:Name="dg_osoby"
+                        Grid.Column="1"
+                        AutoGenerateColumns="False"
+                        Margin="5"
+                        AlternatingRowBackground="Lavender"
+                        GridLinesVisibility="None"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding Bands}"
+                        SelectedItem="{Binding CurrentBand}"
+                        SelectedIndex="{Binding TabDodajOsobyVM.IdZaznaczenia, Mode=TwoWay}"    
+                            
+                    >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Kraj" Binding="{Binding Country}"/>
+                            <DataGridTextColumn Header="Gatunek" Binding="{Binding Genre}"/>
+                            <DataGridTextColumn Header="Koncerty" Binding="{Binding Concerts}"/>
+                        </DataGrid.Columns>
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding TabDodajOsobyVM.LadujFormularz}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </DataGrid>
+                </Grid>
+            </TabItem>-->
+        </TabControl>
+    </Grid>
+</UserControl>
