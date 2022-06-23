@@ -6,14 +6,15 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:MusicSearchFinal.MVVM.Views" xmlns:vm="clr-namespace:MusicSearchFinal.MVVM.ViewModels"
              mc:Ignorable="d" 
+             Background="#eb3797"
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <!--<UserControl.Resources>
         <vm:MainViewModel x:Key="listVM"/>
     </UserControl.Resources>-->
 
     <Grid >
-        
+
         <TabControl>
             <TabItem x:Name="lista" Header="Lista">
                 <Grid>
@@ -28,11 +29,11 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Button Content="Dodaj zespoł" Grid.Row="3" Grid.Column="0" Margin="0 5 10 0"
+                    <Button Content="Dodaj zespoł" Background="#E90C88" Grid.Row="3" Grid.Column="0" Margin="0 5 10 0"
                             Command="{Binding NavigateToAddBandView}"/>
-                    <Button Content="Wróć" Grid.Row="3" Grid.Column="1" Margin="8 5 0 0"
+                    <Button Content="Wróć" Background="#E90C88" Grid.Row="3" Grid.Column="1" Margin="8 5 0 0"
                             Command="{Binding NavigateToLoginView}"/>
-                    <ListView x:Name="Zespoły" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                    <ListView x:Name="Zespoły" Background="#ed4f96" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
                               Margin="0 0 10 0"
                               SelectedItem="{Binding CurrentBand}" 
                               ItemsSource="{Binding Bands}">
@@ -55,7 +56,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                         <GridViewColumn.Header>
-                                            <TextBlock Text="Nazwa" Background="AliceBlue" Width="{Binding ActualWidth, ElementName=kolumna_Nazwisko}" >
+                                            <TextBlock Text="Nazwa" Background="#ed6ab4" Width="{Binding ActualWidth, ElementName=kolumna_Nazwisko}" >
                                              <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseDown">
                                                     <i:InvokeCommandAction Command="{Binding LoadAllBands}"/>
@@ -72,7 +73,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                         <GridViewColumn.Header>
-                                            <TextBlock Text="Kraj"></TextBlock>
+                                            <TextBlock Background="#ed6ab4" Text="Kraj"></TextBlock>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
 
@@ -83,7 +84,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                         <GridViewColumn.Header>
-                                            <TextBlock Text="Gatunek"></TextBlock>
+                                            <TextBlock Background="#ed6ab4" Text="Gatunek"></TextBlock>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
 
@@ -94,7 +95,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                         <GridViewColumn.Header>
-                                            <TextBlock Text="Czy koncertuje?"></TextBlock>
+                                            <TextBlock Background="#ed6ab4" Text="Czy koncertuje?"></TextBlock>
                                         </GridViewColumn.Header>
                                     </GridViewColumn>
                                 </GridView.Columns>
@@ -102,7 +103,7 @@
                         </ListView.View>
                     </ListView>
                     <!-- LISTA CZŁONKÓW -->
-                    <ListView x:Name="telefony" Grid.Column="1" Grid.Row="0" 
+                    <ListView Background="#ed4f96" x:Name="telefony" Grid.Column="1" Grid.Row="0" 
                               Margin="8 0 0 0"
                               SelectedItem="{Binding CurrentMember}" 
                               ItemsSource="{Binding Members}"
@@ -171,7 +172,7 @@
                     </ListView>
 
                     <!-- LISTA ALBUMÓW -->
-                    <ListView x:Name="Albumy" Grid.Column="1" Grid.Row="1"
+                    <ListView Background="#ed4f96" x:Name="Albumy" Grid.Column="1" Grid.Row="1"
                               Margin="8 10 0 0"
                               SelectedItem="{Binding CurrentAlbum}" 
                               ItemsSource="{Binding Albums}"
@@ -231,7 +232,7 @@
                     </ListView>
 
                     <!-- LISTA Piosenki -->
-                    <ListView x:Name="Piosenki" Grid.Column="1" Grid.Row="2"
+                    <ListView Background="#ed4f96" x:Name="Piosenki" Grid.Column="1" Grid.Row="2"
                               Margin="8 10 0 0"
                               SelectedItem="{Binding CurrentSong}" 
                               ItemsSource="{Binding Songs}"
@@ -320,7 +321,9 @@
                              />
                         </Grid>
                     </StackPanel>
-                    --><!-- LISTA OSOB  --><!--
+                    -->
+            <!-- LISTA OSOB  -->
+            <!--
                     <DataGrid 
                         x:Name="dg_osoby"
                         Grid.Column="1"
