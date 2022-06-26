@@ -1,7 +1,6 @@
 ﻿using MusicSearchFinal.DAL.Entities;
 using MusicSearchFinal.DAL.Repositories;
 using MusicSearchFinal.MVVM.Models;
-using MusicSearchFinal.MVVM.Stores;
 using MusicSearchFinal.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,27 +8,27 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace MusicSearchFinal.MVVM.Commands
 {
-    class LoginCommand : ICommand
+    class RegisterCommand : ICommand
     {
-        private readonly LoginViewModel _viewModel;
-        private readonly NavigationStore _navigationStore;
+
         private readonly LoginModel _loginModel;
+        private readonly RegisterViewModel _viewModel;
 
         public ICommand NavigateToDBPreview { get; }
-        public LoginCommand(LoginViewModel viewModel, NavigationStore navigationStore, LoginModel loginModel)
+        public RegisterCommand(RegisterViewModel viewModel, LoginModel loginModel)
         {
-            _viewModel = viewModel;
-            _navigationStore = navigationStore;
+         
             _loginModel = loginModel;
+            _viewModel = viewModel;
 
             _viewModel.PropertyChanged += ViewModel_PropertyChanged;
+
         }
-        
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -41,19 +40,17 @@ namespace MusicSearchFinal.MVVM.Commands
         public void Execute(object parameter)
         {
 
-            if (_loginModel.IsUserInRepo(_viewModel.Name.Replace("-", "‌​"), _viewModel.Surname.Replace("-", "‌​")))
+            var usr = new Users(UsersRepository.GetLastID() + 1, _viewModel.Name, _viewModel.Surname);
+
+            if (_loginModel.AddUserToDB(usr))
             {
-                MessageBox.Show($"Success", "Info",
-               MessageBoxButton.OK, MessageBoxImage.Information);
-                _navigationStore.CurrentViewModel = new ListViewModel(new Model(), _navigationStore);
+                _viewModel.CleanForm();
+                System.Windows.MessageBox.Show("Użytkownik został zarejestrowany! Możesz się zalogować");
             }
-            else
-            {
-                MessageBox.Show($"Zarejestruj się!", "Info",
-                   MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            
 
         }
+
 
         private void ViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -61,3 +58,4 @@ namespace MusicSearchFinal.MVVM.Commands
         }
     }
 }
+

@@ -1,4 +1,5 @@
 ﻿using MusicSearchFinal.DAL.Entities;
+using MusicSearchFinal.DAL.Repositories;
 using MusicSearchFinal.MVVM.Commands;
 using MusicSearchFinal.MVVM.Models;
 using MusicSearchFinal.MVVM.Stores;
@@ -51,42 +52,42 @@ namespace MusicSearchFinal.MVVM.ViewModels
             _navigationStore = navigationStore;
             
             NavigateToLoginView = new NavigateToLoginView(navigationStore);
-
+            Add = new RegisterCommand(this, _loginModel);
 
 
             
         }
         public ICommand NavigateToLoginView { get; }
 
-        private ICommand _add = null;
-        public ICommand Add
-        {
+        //private ICommand _add = null;
+        //public ICommand Add
+        //{
 
-            get
-            {
-                if (_add == null)
-                    _add = new RelayCommand(
-                        arg =>
-                        {
-                            var usr = new Users(6 ,Name, Surname);
+        //    get
+        //    {
+        //        if (_add == null)
+        //            _add = new RelayCommand(
+        //                arg =>
+        //                {
+        //                    var usr = new Users(UsersRepository.GetLastID()+1 ,Name, Surname);
 
-                            if (_loginModel.AddUserToDB(usr))
-                            {
-                                CleanForm();
-                                System.Windows.MessageBox.Show("Użytkownik został zarejestrowany! Możesz się zalogować");
-                            }
-                        }
-                        ,
-                        arg => (Name != "") && (Surname != "")
-                        );
+        //                    if (_loginModel.AddUserToDB(usr))
+        //                    {
+        //                        CleanForm();
+        //                        System.Windows.MessageBox.Show("Użytkownik został zarejestrowany! Możesz się zalogować");
+        //                    }
+        //                }
+        //                ,
+        //                arg => (Name != "") && (Surname != "")
+        //                );
 
 
-                return _add;
-            }
+        //        return _add;
+        //    }
 
-        }
-
-        private void CleanForm()
+        //}
+        public ICommand Add { get; }
+        public void CleanForm()
         {
             Name = "";
             Surname = "";

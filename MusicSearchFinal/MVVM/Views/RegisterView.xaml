@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MusicSearchFinal.MVVM.Views"
              mc:Ignorable="d" 
-             Background="HotPink"
+             Background="#00897b"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <!--DataContext="{Binding Source={StaticResource LVM}}" VerticalAlignment="Center">-->
@@ -20,7 +20,7 @@
             HorizontalAlignment="Center"
             FontSize="48"
             Text="Rejestracja" FontWeight="Bold" FontStyle="Italic"
-                   Margin="0 120 0 0 "/>
+                   Margin="0 120 0 0 " Foreground="#282828"/>
 
         <!-- Login Form -->
         <Grid Grid.Row="1" Margin="0 20 0 0"
@@ -39,7 +39,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Imię" />
+                <TextBlock Grid.Column="0" Text="Imię" Foreground="White"/>
                 <TextBox Grid.Column="1" Margin="10,0,0,0"
                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
@@ -51,7 +51,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Nazwisko" />
+                <TextBlock Grid.Column="0" Text="Nazwisko" Foreground="White"/>
                 <TextBox Grid.Column="1" Margin="10,0,0,0"
                     Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -76,7 +76,7 @@
             <Button Grid.Row="2" Margin="0 0 5 0"
             HorizontalAlignment="Center"
             Command="{Binding NavigateToLoginView}"
-            Content="Login" />
+            Content="Login" Background="#282828" Foreground="White"/>
             <!--<Button Grid.Row="2" Margin="5 0 0 0"
             HorizontalAlignment="Center"
             Command="{Binding NavigateToDBPreview}"
@@ -84,7 +84,7 @@
             <Button Grid.Row="2" Margin="5 0 0 0"
             HorizontalAlignment="Center"
             Command="{Binding Add}"
-            Content="Register" />
+            Content="Register" Background="#282828" Foreground="White"/>
         </StackPanel>
 
 

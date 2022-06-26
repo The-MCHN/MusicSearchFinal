@@ -147,6 +147,7 @@
     <Compile Include="MVVM\Commands\NavigateToDBGUI.cs" />
     <Compile Include="MVVM\Commands\NavigateToLoginView.cs" />
     <Compile Include="MVVM\Commands\NavigateToRegisterView.cs" />
+    <Compile Include="MVVM\Commands\RegisterCommand.cs" />
     <Compile Include="MVVM\Components\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>

@@ -13,6 +13,8 @@ namespace MusicSearchFinal.DAL.Repositories
         #region queries
         private const string ALL_USERS = "select * from użytkownicy";
         private const string ADD_USER = "insert into użytkownicy values \n";
+        private const string GET_LAST_USER_ID = "select max(ID_Użytkownika) from użytkownicy";
+
         #endregion
 
         public static List<Users> DownloadAllUsers()
@@ -42,6 +44,21 @@ namespace MusicSearchFinal.DAL.Repositories
             }
 
             return stan;
+        }
+
+        public static int GetLastID()
+        {
+            int id = 0;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command = new MySqlCommand(ALL_USERS, connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                    id = (int)reader[0];
+                connection.Close();
+            }
+            return id;
         }
        
     }

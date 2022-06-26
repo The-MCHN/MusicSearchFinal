@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:MusicSearchFinal.MVVM.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="LightPink">
+             >
     <Grid >
 
         <TabControl>
@@ -19,17 +19,17 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Margin="5">
-                        <TextBlock Background="HotPink" Text="Nazwa:"/>
-                        <TextBox Background="HotPink" x:Name="nazwa"  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Nazwa:"/>
+                        <TextBox x:Name="nazwa"  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock  Background="HotPink" Text="Kraj:"/>
-                        <TextBox Background="HotPink" x:Name="kraj" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Kraj:"/>
+                        <TextBox x:Name="kraj" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Background="HotPink" Text="Gatunek:"/>
-                        <TextBox Background="HotPink" x:Name="gatunek" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Gatunek:"/>
+                        <TextBox x:Name="gatunek" Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Background="HotPink" Text="Czy koncertuje?"/>
-                        <TextBox Background="HotPink" x:Name="koncertuje" Text="{Binding Concerts, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Czy koncertuje?"/>
+                        <TextBox x:Name="koncertuje" Text="{Binding Concerts, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <TextBlock />
                         <Grid>
@@ -44,17 +44,14 @@
                             <Button x:Name="button_Dodaj" Grid.Column="0" Content="Dodaj zespół do bazy"
                                     Margin="5"
                                     Command="{Binding Add}"
-                                    Background="DeepPink"
-                             />
+                                    />
                             <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Margin="0 188 0 0">
                                 <Button x:Name="button_back" Grid.Column="1" Grid.Row="2" Content="Wróć do przeglądu" 
                                     Margin="5"
-                                    Background="DeepPink"
                                     Command="{Binding NavigateToDBPreview}"/>
 
                                 <Button x:Name="button_logout" Grid.Column="0" Grid.Row="2" Content="Wyloguj" 
                                     Margin="5"
-                                    Background="DeepPink"
                                     Command="{Binding NavigateToLoginView}"/>
                             </StackPanel>
                             <!--<Button x:Name="button_back" Grid.Column="1" Grid.Row="2" Content="Wróć do przeglądu" 
@@ -79,7 +76,6 @@
                         AlternatingRowBackground="LightCyan"
                         GridLinesVisibility="None"
                         IsReadOnly="True"
-                        Background="HotPink"
                         ItemsSource="{Binding Bands}"
                         SelectedItem="{Binding CurrentBand}">
 
