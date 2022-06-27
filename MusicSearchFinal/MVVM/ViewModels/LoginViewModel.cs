@@ -80,9 +80,7 @@ namespace MusicSearchFinal.MVVM.ViewModels
             _navigationStore = navigationStore;
             LoginCommand = new LoginCommand(this, navigationStore, _loginModel);
             NavigateToDBPreview = new NavigateToDBGUI(navigationStore);
-            NavigateToRegisterView = new NavigateToRegisterView(navigationStore);
-
-            _role = _loginModel.SetRole();
+            NavigateToRegisterView = new NavigateToRegisterView(navigationStore);            
         }
     }
 }

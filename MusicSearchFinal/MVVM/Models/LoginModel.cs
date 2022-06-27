@@ -25,7 +25,7 @@ namespace MusicSearchFinal.MVVM.Models
 
         public ObservableCollection<string> SetRole()
         {
-            return new ObservableCollection<string>() {"Wyjadacz", "Laik"};
+            return new ObservableCollection<string>() { "Wyjadacz", "Laik" };
         }
 
         public bool AddUserToDB(Users user)
@@ -41,7 +41,7 @@ namespace MusicSearchFinal.MVVM.Models
             return false;
         }
         public bool IsUserInRepo(Users user) => Users.Contains(user);
-        public bool IsUserInRepo(string Name, string Surname) 
+        public bool IsUserInRepo(string Name, string Surname)
         {
             foreach (var u in Users)
             {
